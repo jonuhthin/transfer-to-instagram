@@ -1,0 +1,13 @@
+write a helper function getHandleFromUrl which takes in a url and returns the last value when delimiting the url by "/"
+
+write a helper function getInstagramUrlFromLinktreeUrl which takes in a linktreeUrl and send a GET request to the linktreeUrl and searches the html response for an href which contains "instagram.com". If there is an href that satisifies this condition, it returns getHandleFromUrl on the href, else it returns None
+
+write a function getInstagramUrlFromTiktok, which takes a user object as a parameter and returns an instagram url or None. follow this order in trying to find the instagram url:
+- if the user.bioLink exists and user.bioLink.link exists
+    - if the link contains instagram.com, return the link
+    - if the link contains linktr.ee, return the getInstagramUrlFromLinktreeUrl helper on the link
+- if the user.signature exists, 
+    - check if the signature delimited by spaces and/or new lines contains a url with "instagram.com" in it, and return that if so
+    - if the signature delimited by spaces and/or new lines contains a url with linktr.ee in it, call getInstagramUrlFromLinktreeUrl on the found url
+    - check if the lowercased signature delimited by spaces and/or new lines (\n) contains "ig:", "insta:", or "instagram:". If so, return the immediately following text in the delimited list after removing any "@" characters
+- return None if it reaches this point
